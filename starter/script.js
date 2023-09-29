@@ -4,7 +4,7 @@ var now = moment().format("H A");
 
 $("#currentDay").text(today);
 
-var planWorkday = [
+var planBusinessday = [
   { time: "9 AM", event: "" },
   { time: "10 AM", event: "" },
   { time: "11 AM", event: "" },
@@ -18,12 +18,12 @@ var planWorkday = [
 
 var workEvents = JSON.parse(localStorage.getItem("workDay"));
 if (workEvents) {
-  planWorkday = workEvents;
+  planBusinessday = workEvents;
 }
 
 $("#currentDay").text(today);
 
-planWorkday.forEach(function (timeBlock, index) {
+planBusinessday.forEach(function (timeBlock, index) {
   var timeLabel = timeBlock.time;
   var blockColor = colorRow(timeLabel);
   var row =
@@ -55,7 +55,7 @@ function colorRow(time) {
 $(".saveBtn").on("click", function () {
   var blockID = parseInt($(this).closest(".time-block").attr("id"));
   var userEntry = $.trim($(this).parent().siblings("textarea").val());
-  planWorkday[blockID].event = userEntry;
+  planBusinessday[blockID].event = userEntry;
 
-  localStorage.setItem("workDay", JSON.stringify(planWorkday));
+  localStorage.setItem("workDay", JSON.stringify(planBusinessday));
 });
